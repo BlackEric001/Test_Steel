@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Steel_Test.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список пользователей</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Ф.И.О.
+            <!--@Html.DisplayNameFor(model => model.FIO)-->
+        </th>
+        <th>
+            Табельный номер
+           <!--@Html.DisplayNameFor(model => model.TableNumber)-->
+        </th>
+        <th>
+            Должность
+        </th>
+        <th>
+            Фото
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TableNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position.PositionName)
+        </td>
+        <td>
+            <img src="data:image;base64,@System.Convert.ToBase64String(item.Photo)" />
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.ID }) <!--|
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |-->
+            <!--@Html.ActionLink("Delete", "Delete", new { id=item.ID })-->
+        </td>
+    </tr>
+}
+
+</table>
